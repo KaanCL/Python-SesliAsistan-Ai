@@ -1,6 +1,12 @@
 GEMINI_API_KEY="AIzaSyAmIckBZH2xuGlJgBaZngLl1xSUdc6sHu0"
+OPENAI_API_KEY="sk-proj-PLG55GEuPsGW3glPBGOjT3BlbkFJskR5GPeaFTxvOVj5Ub6v"
 
 model='gemini-1.0-pro'
+
+unkownValueError_Sound="Söylediğiniz Anlaşılmadı Tekrar Deneyiniz"
+timeoutError_Sound = "ZamanAşımı Hatası Tekrar Deneyiniz"
+
+helloSound = "Merhaba Size Nasıl Yardımcı Olabilirim ?"
 
 generation_config={
      "tempature":0.5,

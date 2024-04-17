@@ -14,37 +14,61 @@ r = sr.Recognizer()
 
 model=genai.GenerativeModel(credentials.getModel()) 
 
+def SpeecherrorSound(e):
+         errorSound = e
+         print(f">> {errorSound}")
+         tts=gTTS(text=errorSound,lang="tr")
+         file_path="answer.mp3"
+         tts.save(file_path)
+         playsound('answer.mp3')
+         os.remove("answer.mp3")
+         
 def inputPrompt():
+    file_path=""
+    errorSound = ""
+    helloSound = credentials.helloSound
     while True:
         with sr.Microphone() as source:
-            print("Birşey Söyleyin")
+
+            print(f"{helloSound}")
             audio=r.listen(source)
-            data = ""
+            os.remove
+            data=""
             try:
                 data = r.recognize_google(audio,language="tr-TR")
             except sr.UnknownValueError:
-                print(">> Söylediğiniz Anlaşılmadı")
+                errorSound = credentials.unkownValueError_Sound
+                print(f">> {errorSound}")
+                SpeecherrorSound(errorSound)
             except sr.WaitTimeoutError:
-                print(">> ZamanAşımı Hatası")
+                errorSound = credentials.timeoutError_Sound
+                print(f">> {errorSound}")
+                SpeecherrorSound(errorSound)
         if data:
-             break
+             break 
     print(">>",data)
     response=model.generate_content(data)
     print(">>",response.text)
-    return response.text
 
+    return response.text
 def speechPrompt(response):
         tts=gTTS(text=response,lang="tr")
         file_path="answer.mp3"
         tts.save(file_path)
         playsound('answer.mp3')
 
+def filterResponse(r):
+     print(type(response))
+     r =""
+     for i in response:
+          if i =="*":
+               continue
+          r+=i
+     return r
+               
+     
 while True:
      response = inputPrompt()
-     speechPrompt(response)
+     speechPrompt(filterResponse(response))
      os.remove("answer.mp3")
      
-
-
-
-
