@@ -1,18 +1,22 @@
 GEMINI_API_KEY="AIzaSyAmIckBZH2xuGlJgBaZngLl1xSUdc6sHu0"
 OPENAI_API_KEY="sk-proj-PLG55GEuPsGW3glPBGOjT3BlbkFJskR5GPeaFTxvOVj5Ub6v"
 
-model='gemini-1.0-pro'
+gemini_model='gemini-1.0-pro'
 
 unkownValueError_Sound="Söylediğiniz Anlaşılmadı Tekrar Deneyiniz"
 timeoutError_Sound = "ZamanAşımı Hatası Tekrar Deneyiniz"
 
-helloSound = "Merhaba Size Nasıl Yardımcı Olabilirim ?"
+
+text_helloSound = "Size Nasıl Yardımcı Olabilirim ?"
+image_helloSound = "Merhaba Size Nasıl Bir Görsel Üreteyim ?"
+
+choice_helloSound ="Merhaba Ben Hamilton , 'Asistan' Veya 'Resim' Diyerek Seçim Yapınız "
 
 generation_config={
      "temperature":0.5,
      "top_p":1,
      "top_k":1,
-     "max_output_tokens":2000,
+     "max_output_tokens":2020,
 }
 safety_settings = [
   {
@@ -36,19 +40,17 @@ safety_settings = [
 dallE_model="dall-e-3"
 dallE_size="1024x1024"
 
+choice =""
 
-
-def setModel(model_name):
-    global model
-    
-    if model_name =='gemini-1.0-pro':
-          model = 'gemini-pro-vision'
-    else:
-         model='gemini-1.0-pro'
-    
+special_characters = ['!', '@', '#', '$', '%', '^', '&', '*', '=', '{', '}', '[', ']', '|', '\\', ':', ';', '"', "'", '<', '>', ',', '.', '?', '/']
+def setChoice(c):
+     global choice
+     choice = c
+     
+def getChoice():
+      return choice
 def getModel():
-     return model
-
+     return gemini_model
 def getConfig():
      return generation_config
 
