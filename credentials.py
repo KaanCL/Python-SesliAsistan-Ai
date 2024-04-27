@@ -1,5 +1,13 @@
-GEMINI_API_KEY="AIzaSyAmIckBZH2xuGlJgBaZngLl1xSUdc6sHu0"
-OPENAI_API_KEY="sk-proj-PLG55GEuPsGW3glPBGOjT3BlbkFJskR5GPeaFTxvOVj5Ub6v"
+from dotenv import load_dotenv
+import os
+
+def configure():
+     load_dotenv()
+
+configure()
+
+GEMINI_API_KEY=os.getenv('GEMINI_API_KEY')
+OPENAI_API_KEY=os.getenv('OPENAI_API_KEY')
 
 gemini_model='gemini-1.0-pro'
 
@@ -16,7 +24,7 @@ generation_config={
      "temperature":0.5,
      "top_p":1,
      "top_k":1,
-     "max_output_tokens":2020,
+     "max_output_tokens":2020
 }
 safety_settings = [
   {
